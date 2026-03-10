@@ -17,6 +17,9 @@
       @"Offline pack should be invalid when initialized independently of MLNOfflineStorage.");
 
   XCTAssertThrowsSpecificNamed(
+      invalidPack.regionID, NSException, MLNInvalidOfflinePackException,
+      @"Invalid offline pack should raise an exception when accessing its regionID.");
+  XCTAssertThrowsSpecificNamed(
       invalidPack.region, NSException, MLNInvalidOfflinePackException,
       @"Invalid offline pack should raise an exception when accessing its region.");
   XCTAssertThrowsSpecificNamed(

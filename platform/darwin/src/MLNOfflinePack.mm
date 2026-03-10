@@ -92,6 +92,12 @@ private:
             @"MLNOfflinePack was not invalided prior to deallocation.");
 }
 
+- (int64_t)regionID {
+  MLNAssertOfflinePackIsValid();
+
+  return _mbglOfflineRegion->getID();
+}
+
 - (id<MLNOfflineRegion>)region {
   MLNAssertOfflinePackIsValid();
 
