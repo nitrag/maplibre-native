@@ -19,6 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly) NSDictionary *offlineStartEventAttributes;
 
+/**
+ The unique identifier of the offline region, redeclared as readwrite for
+ internal use.
+ */
+@property (nonatomic, readwrite) int64_t id;
+
 @end
 
 NS_ASSUME_NONNULL_END

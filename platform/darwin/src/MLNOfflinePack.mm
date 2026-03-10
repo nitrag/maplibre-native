@@ -92,12 +92,6 @@ private:
             @"MLNOfflinePack was not invalided prior to deallocation.");
 }
 
-- (int64_t)regionID {
-  MLNAssertOfflinePackIsValid();
-
-  return _mbglOfflineRegion->getID();
-}
-
 - (id<MLNOfflineRegion>)region {
   MLNAssertOfflinePackIsValid();
 
@@ -107,14 +101,20 @@ private:
   MLNAssert([MLNShapeOfflineRegion conformsToProtocol:@protocol(MLNOfflineRegion_Private)],
             @"MLNShapeOfflineRegion should conform to MLNOfflineRegion_Private.");
 
+  int64_t regionID = _mbglOfflineRegion->getID();
   return std::visit(
       mbgl::overloaded{[&](const mbgl::OfflineTilePyramidRegionDefinition def) {
-                         return (id<MLNOfflineRegion>)[[MLNTilePyramidOfflineRegion alloc]
-                             initWithOfflineRegionDefinition:def];
+                         MLNTilePyramidOfflineRegion *region =
+                             [[MLNTilePyramidOfflineRegion alloc]
+                                 initWithOfflineRegionDefinition:def];
+                         region.id = regionID;
+                         return (id<MLNOfflineRegion>)region;
                        },
                        [&](const mbgl::OfflineGeometryRegionDefinition &def) {
-                         return (id<MLNOfflineRegion>)[[MLNShapeOfflineRegion alloc]
+                         MLNShapeOfflineRegion *region = [[MLNShapeOfflineRegion alloc]
                              initWithOfflineRegionDefinition:def];
+                         region.id = regionID;
+                         return (id<MLNOfflineRegion>)region;
                        }},
       regionDefinition);
 }
