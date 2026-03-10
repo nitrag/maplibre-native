@@ -131,7 +131,7 @@ MLN_EXPORT
  The value is `nil` for packs that have not yet been saved to the database. In
  Swift, this property is typed as `NSNumber?`.
  */
-@property (nonatomic, readonly, nullable) NSNumber *regionID;
+@property (nonatomic, readonly, nullable) NSNumber *regionId;
 
 /**
  The region for which the pack manages resources.

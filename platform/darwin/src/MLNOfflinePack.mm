@@ -92,7 +92,7 @@ private:
             @"MLNOfflinePack was not invalided prior to deallocation.");
 }
 
-- (nullable NSNumber *)regionID {
+- (nullable NSNumber *)regionId {
   if (_state == MLNOfflinePackStateInvalid || !_mbglOfflineRegion) {
     return nil;
   }
