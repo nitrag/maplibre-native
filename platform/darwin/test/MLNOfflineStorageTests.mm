@@ -752,6 +752,12 @@
                    XCTAssertEqual([MLNOfflineStorage sharedOfflineStorage].packs.count,
                                   countOfPacks + 1,
                                   @"Adding contents of sideload_sat.db should add one pack.");
+                   MLNOfflinePack *lastPack =
+                       [MLNOfflineStorage sharedOfflineStorage].packs.lastObject;
+                   XCTAssertNotNil(lastPack,
+                                  @"Pack should exist after adding contents.");
+                   XCTAssertNotEqual(lastPack.region.id, 0,
+                                    @"Region ID should not be 0 after a pack is added.");
                  }];
 
   // Invalid database type
