@@ -13,19 +13,6 @@
     [MLNSettings useWellKnownTileServer:MLNMapTiler];
 }
 
-- (void)testInitialID {
-    MLNCoordinateBounds bounds = MLNCoordinateBoundsMake(kCLLocationCoordinate2DInvalid, kCLLocationCoordinate2DInvalid);
-    MLNTilePyramidOfflineRegion *tilePyramidRegion = [[MLNTilePyramidOfflineRegion alloc] initWithStyleURL:nil bounds:bounds fromZoomLevel:0 toZoomLevel:DBL_MAX];
-    XCTAssertEqual(tilePyramidRegion.id, 0, @"Tile pyramid offline region should have an id of 0 before being added to offline storage.");
-
-    NSString *geojson = @"{\"type\": \"Point\", \"coordinates\": [-3.8671874999999996, 52.482780222078226] }";
-    NSError *error;
-    MLNShape *shape = [MLNShape shapeWithData: [geojson dataUsingEncoding:NSUTF8StringEncoding] encoding: NSUTF8StringEncoding error:&error];
-    XCTAssertNil(error);
-    MLNShapeOfflineRegion *shapeRegion = [[MLNShapeOfflineRegion alloc] initWithStyleURL:nil shape:shape fromZoomLevel:0 toZoomLevel:DBL_MAX];
-    XCTAssertEqual(shapeRegion.id, 0, @"Shape offline region should have an id of 0 before being added to offline storage.");
-}
-
 - (void)testStyleURLs {
     MLNCoordinateBounds bounds = MLNCoordinateBoundsMake(kCLLocationCoordinate2DInvalid, kCLLocationCoordinate2DInvalid);
     MLNTilePyramidOfflineRegion *region = [[MLNTilePyramidOfflineRegion alloc] initWithStyleURL:nil bounds:bounds fromZoomLevel:0 toZoomLevel:DBL_MAX];

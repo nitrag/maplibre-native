@@ -19,7 +19,6 @@
   NSURL *_styleURL;
 }
 
-@synthesize id = _id;
 @synthesize styleURL = _styleURL;
 @synthesize includesIdeographicGlyphs = _includesIdeographicGlyphs;
 

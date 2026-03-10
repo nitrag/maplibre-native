@@ -9,17 +9,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol MLNOfflineRegion <NSObject>
 
 /**
- The unique identifier of the offline region.
-
- This identifier is an auto-incrementing value assigned by the offline database
- when the region is created. It is stable across application launches and can be
- used to distinguish between different offline regions.
-
- The value is 0 for regions that have not yet been added to offline storage.
- */
-@property (nonatomic, readonly) int64_t id;
-
-/**
  URL of the style whose resources are required for offline viewing.
 
  In addition to the JSON stylesheet, different styles may require different font
